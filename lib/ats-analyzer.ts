@@ -78,11 +78,10 @@ function hasContactInfo(text: string): {
   phone: boolean;
   linkedin: boolean;
 } {
-  const lower = text.toLowerCase();
   return {
     email: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i.test(text),
     phone: /(\+?1[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/.test(text),
-    linkedin: lower.includes("linkedin") || lower.includes("linkedin.com"),
+    linkedin: /\blinkedin\b/i.test(text),
   };
 }
 
@@ -108,9 +107,9 @@ function countActionVerbBullets(text: string): {
   withActionVerb: number;
 } {
   const lines = text.split("\n").filter((l) => l.trim().length > 0);
-  const bulletLines = lines.filter((l) => /^[•\-\*\u2022\u2023\u25E6]/.test(l.trim()));
+  const bulletLines = lines.filter((l) => /^[-•*\u2022\u2023\u25E6]/.test(l.trim()));
   const withVerb = bulletLines.filter((l) => {
-    const firstWord = l.trim().replace(/^[•\-\*\u2022\u2023\u25E6]\s*/, "").split(/\s+/)[0];
+    const firstWord = l.trim().replace(/^[-•*\u2022\u2023\u25E6]\s*/, "").split(/\s+/)[0];
     return ACTION_VERBS.includes(firstWord?.toLowerCase() ?? "");
   });
   return { total: bulletLines.length, withActionVerb: withVerb.length };

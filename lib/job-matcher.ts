@@ -83,7 +83,7 @@ function extractKeywords(text: string): Set<string> {
   // Extract single significant words (4+ chars, not stopwords)
   const words = lower.match(/\b[a-z][a-z0-9+#.-]{2,}\b/g) ?? [];
   for (const word of words) {
-    if (!STOPWORDS.has(word) && word.length >= 3) {
+    if (!STOPWORDS.has(word)) {
       found.add(word);
     }
   }
