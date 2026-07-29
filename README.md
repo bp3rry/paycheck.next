@@ -61,14 +61,41 @@ job posting analysis across thousands of roles.
 
 ## Getting started
 
+**Prerequisites:** [Node.js 18+](https://nodejs.org/) and npm (comes with Node).
+
 ```bash
+# 1. Install dependencies (only needed once)
 npm install
+
+# 2. Start the local development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000) in your browser. The dev server
+supports hot-reload — edits show up in the browser instantly without restarting.
 
-## Building for production
+## Running tests
+
+```bash
+npm test
+```
+
+## Deployment
+
+The easiest way to make the app publicly accessible is [Vercel](https://vercel.com) (free tier,
+built by the Next.js team):
+
+1. Sign in to [vercel.com](https://vercel.com) with your GitHub account.
+2. Click **Add New Project** and import `bp3rry/paycheck.next`.
+3. Accept all defaults and click **Deploy**.
+
+Vercel auto-detects Next.js, builds the app, and gives you a public URL. Every push to `main`
+redeploys automatically.
+
+Other free options that support Next.js: [Netlify](https://netlify.com) and
+[Railway](https://railway.app) both offer similar one-click GitHub import flows.
+
+## Building for production (self-hosted)
 
 ```bash
 npm run build
